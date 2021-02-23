@@ -43,25 +43,52 @@ class LinkedList
   end  
 
   def head
-    
+    return @head.data
   end  
 
   def tail
-    
+    current_node = @head
+    until current_node.next_node === nil do
+      current_node = current_node.next_node   
+    end
+    current_node.data 
   end  
 
   def at (index)
-    
+    count = 0
+    current_node = @head
+    if !@head
+      "list is empty"
+    else 
+      while count < index do
+        count += 1
+        current_node = current_node.next_node
+      end
+    end
+    current_node.data  
   end  
 
   def pop 
-    
+    current_node = @head
+    previous_node = nil
+    until current_node.next_node === nil do
+      previous_node = current_node
+      current_node = current_node.next_node
+    end
+    previous_node.next_node = nil  
   end  
 
   def contains? (item)
     contains = false
-    
-    return contains
+    current_node = @head
+    until current_node.next_node === nil || contains === true do
+      if current_node.data === item
+        contains = true
+      else
+        current_node = current_node.next_node
+      end  
+    end  
+    contains
   end  
 
   def find (value)
@@ -91,8 +118,14 @@ list_1.append(2)
 list_1.append(3)
 list_1.append(4)
 list_1.prepend(5)
+list_1.prepend(6)
+
 
 puts list_1.size
+list_1.pop
+puts list_1.size
+puts list_1.contains?(1)
+
 
 
 
