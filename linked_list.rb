@@ -1,5 +1,107 @@
+class LinkedList
+   
+  def initialize
+    @head = nil
+  end  
+
+  def append(data)
+    new_node = Node.new(data)
+    if @head 
+      current_node = @head
+      until current_node.next_node === nil do
+      current_node = current_node.next_node 
+      end
+      current_node.next_node = new_node
+    else
+      @head = new_node
+    end     
+  end  
+
+  def prepend(data)
+    new_node = Node.new(data)
+    if @head
+      new_node.next_node = @head
+      @head = new_node
+    else 
+      @head = new_node
+    end    
+  end  
+
+  def size
+    count = 0
+    current_node = @head
+    if !@head
+      count
+    else
+      count += 1
+      until current_node.next_node === nil
+        count += 1
+        current_node = current_node.next_node
+      end 
+      count   
+    end   
+  end  
+
+  def head
+    
+  end  
+
+  def tail
+    
+  end  
+
+  def at (index)
+    
+  end  
+
+  def pop 
+    
+  end  
+
+  def contains? (item)
+    contains = false
+    
+    return contains
+  end  
+
+  def find (value)
+    index = 'nil'
+    
+    return index
+  end  
+
+  def to_s
+
+  end
+
+end
+
+class Node
+  attr_accessor :data, :next_node
+  def initialize (data)
+  @data = data
+  @next_node = nil
+  end
+end  
+  
+
+list_1 = LinkedList.new
+list_1.append(1)
+list_1.append(2)
+list_1.append(3)
+list_1.append(4)
+list_1.prepend(5)
+
+puts list_1.size
+
+
+
+
+
+
 # based on the some of the resources in the lesson, this seemed like a fun way of giving an array a linked-list functionality
 
+=begin
 class LinkedList
   attr_accessor :list
 
@@ -79,3 +181,4 @@ list_1.append(3)
 
 puts list_1.to_s
 
+=end
