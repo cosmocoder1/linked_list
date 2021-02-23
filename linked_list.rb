@@ -1,15 +1,19 @@
+# based on the some of the resources in the lesson, this seemed like a fun way of giving an array a linked-list functionality
+
 class LinkedList
   attr_accessor :list
 
   $list = []
 
-  def append(value)
-    new_node = Node.new(value)
-    $list.push(new_node)  
+  def append(data)
+    new_node = Node.new(data)
+    $list.push(new_node) 
+    $list[$list.length - 2].next_node = new_node.data 
   end  
 
-  def prepend(value)
-    new_node = Node.new(value)
+  def prepend(data)
+    head = $list[0]
+    new_node = Node.new(data)
     $list.unshift(new_node)
   end  
 
@@ -34,37 +38,44 @@ class LinkedList
   end  
 
   def contains? (item)
-    i = 0
-    toggle = nil
-    while i < $list.length do
-      if $list[i].value === item
-        toggle = true
-      end
-      i += 1
-    end
-    toggle === true ? toggle : false   
+    contains = false
+    $list.each_with_index.map { |node, i| if node.value === item
+    contains = true
+    end }
+    return contains
   end  
 
   def find (value)
     index = 'nil'
     $list.each_with_index.map { |node, i| if node.value === value
     index = i
-  end }
+    end }
     return index
   end  
 
   def to_s
-    $list.map { |node| puts node }
-  end   
+    $list.map.with_index { |node, i| 
+    if i != $list.length - 1
+      print "#{node.data} -> "
+    else
+    print "#{node.data} -> nil" 
+    end } 
+
+  end
 
 end
 
 class Node
-  attr_accessor :value, :next_node
-
-  def initialize (value)
-  @value = value
+  attr_accessor :data, :next_node
+  def initialize (data)
+  @data = data
   end
-
-  next_node = nil
 end  
+
+list_1 = LinkedList.new
+list_1.append(1)
+list_1.append(2)
+list_1.append(3)
+
+puts list_1.to_s
+
